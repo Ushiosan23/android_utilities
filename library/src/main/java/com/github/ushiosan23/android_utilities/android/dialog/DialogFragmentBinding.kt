@@ -6,7 +6,7 @@ import android.util.DisplayMetrics
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
-import com.github.ushiosan23.android_utilities.utilities.MutableSize
+import com.github.ushiosan23.android_utilities.data.MutableSize
 import com.github.ushiosan23.android_utilities.utilities.inflateBinding
 
 /**
