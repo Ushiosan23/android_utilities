@@ -51,6 +51,7 @@ fun <T : ViewBinding> inflateBinding(
 			Boolean::class.java
 		)
 	} catch (err: Exception) {
+		logError("INFLATE_ERROR", err)
 		return null
 	}
 
