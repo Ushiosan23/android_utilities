@@ -137,6 +137,10 @@ fun <T : AppCompatActivity, L, Y> T.registerForResultEx(
 
 /**
  * Register activity to request result. This method is the new form to replace [Activity.startActivityForResult]
+ *
+ * @param T Target activity
+ * @param callback Result callback
+ * @return Return the activity result launcher instance
  */
 fun <T : AppCompatActivity> T.registerActivityForResultEx(
 	callback: ActivityResultCallback<ActivityResult>
