@@ -5,6 +5,13 @@ import android.os.Bundle
 import android.text.Editable
 import java.io.Serializable
 
+/**
+ * Extension used to put all valid intent objects.
+ *
+ * @param name Intent extra name
+ * @param value Intent extra value
+ * @return Returns the current intent with all extra values
+ */
 fun Intent.putAnyExtra(name: String, value: Any?): Intent = when (value) {
 	is Bundle -> putExtra(name, value)
 	is Serializable -> putExtra(name, value)
@@ -31,5 +38,11 @@ fun Intent.putAnyExtra(name: String, value: Any?): Intent = when (value) {
 	else -> putExtra(name, Bundle())
 }
 
+/**
+ * Extension used to put all valid intent objects.
+ *
+ * @param pair Map pair value
+ * @return Returns the current intent with all extra values
+ */
 fun Intent.putAnyExtra(pair: Pair<String, Any?>): Intent =
 	putAnyExtra(pair.first, pair.second)
