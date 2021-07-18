@@ -12,6 +12,7 @@ import com.github.ushiosan23.android_utilities.extensions.makeToast
 import com.github.ushiosan23.android_utilities.extensions.resolveClass
 import com.github.ushiosan23.app.R
 import com.github.ushiosan23.app.databinding.ActivityMainBinding
+import com.github.ushiosan23.app.dialogs.DeviceInfoDialog
 import com.github.ushiosan23.app.dialogs.ExampleDialog
 import com.google.android.material.snackbar.Snackbar
 
@@ -23,6 +24,7 @@ class ActivityMain : ActivityCompatBinding<ActivityMainBinding>() {
 		binding.exampleButton.setOnClickListener(this::onButtonClicked)
 		binding.exampleThemeToggle.setOnClickListener(this::onToggleThemeClicked)
 		binding.exampleButtonDialog.setOnClickListener(this::onButtonDialogClicked)
+		binding.hardwareInformationButton.setOnClickListener(this::onButtonInfoDialogClicked)
 
 
 		// Change theme
@@ -77,6 +79,12 @@ class ActivityMain : ActivityCompatBinding<ActivityMainBinding>() {
 	private fun onButtonDialogClicked(v: View) {
 		val dialog = ExampleDialog()
 		dialog.show(supportFragmentManager, "ExampleDialog")
+	}
+
+	@Suppress("UNUSED_PARAMETER")
+	private fun onButtonInfoDialogClicked(v: View) {
+		val dialog = DeviceInfoDialog()
+		dialog.show(supportFragmentManager, "DeviceInfoDialog")
 	}
 
 }
