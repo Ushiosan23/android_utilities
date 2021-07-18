@@ -5,7 +5,7 @@ import android.util.DisplayMetrics
 import android.view.Gravity
 import com.github.ushiosan23.android_utilities.android.dialog.DialogFragmentBinding
 import com.github.ushiosan23.android_utilities.extensions.resolveClass
-import com.github.ushiosan23.android_utilities.utilities.MutableSize
+import com.github.ushiosan23.android_utilities.data.MutableSize
 import com.github.ushiosan23.app.R
 import com.github.ushiosan23.app.databinding.DialogExampleBinding
 

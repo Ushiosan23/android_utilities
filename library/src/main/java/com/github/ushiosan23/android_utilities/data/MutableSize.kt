@@ -1,4 +1,4 @@
-package com.github.ushiosan23.android_utilities.utilities
+package com.github.ushiosan23.android_utilities.data
 
 /**
  * Data class used only in [com.github.ushiosan23.android_utilities.android.dialog.DialogFragmentBinding] configuration

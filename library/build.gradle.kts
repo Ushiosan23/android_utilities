@@ -138,6 +138,7 @@ dependencies {
 	implementation("com.google.android.material:material:1.4.0")
 
 	// Jetpack dependencies
+	implementation("androidx.biometric:biometric:1.1.0")
 
 	// Test implementations
 	testImplementation("junit:junit:4.13.2")
