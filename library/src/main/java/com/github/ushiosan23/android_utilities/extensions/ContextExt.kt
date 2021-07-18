@@ -40,7 +40,10 @@ fun <T : Context> T.makeToast(text: CharSequence, duration: Int): Toast =
  * --------------------------------------------------------- */
 
 /**
+ * Get context display metrics.
  *
+ * @param T Target context
+ * @return Returns context display metrics
  */
 @Suppress("DEPRECATION")
 fun <T : Context> T.getDisplayMetrics(): DisplayMetrics {
