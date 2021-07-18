@@ -3,6 +3,7 @@ plugins {
 	`maven-publish`
 	id("com.android.library")
 	id("kotlin-android")
+	id("org.jetbrains.dokka")
 }
 
 // Apply script
@@ -56,6 +57,24 @@ android {
 	}
 }
 
+tasks.create("androidSourceJar", Jar::class) {
+	archiveClassifier.set("sources")
+	if (project.plugins.hasPlugin("com.android.library")) {
+		from(android.sourceSets["main"].java.srcDirs)
+		from(android.sourceSets["main"].jni.srcDirs)
+	} else {
+		from(sourceSets["main"].java.srcDirs)
+	}
+}
+
+tasks.create("dokkaPackageJar", Jar::class) {
+	archiveClassifier.set("javadoc")
+	if (project.plugins.hasPlugin("org.jetbrains.dokka")) {
+		from(project.tasks["dokkaHtml"])
+		dependsOn(project.tasks["dokkaHtml"])
+	}
+}
+
 /* MavenCentral configuration */
 afterEvaluate {
 	publishing {
@@ -66,6 +85,8 @@ afterEvaluate {
 				version = rootProject.extra["versionName"] as String
 
 				from(components["release"])
+				artifact(project.tasks["androidSourceJar"])
+				artifact(project.tasks["dokkaPackageJar"])
 
 				// Pom file
 				pom {
@@ -112,14 +133,14 @@ dependencies {
 	implementation(kotlin("stdlib"))
 
 	// Android dependencies
-	implementation("androidx.core:core-ktx:1.5.0")
+	implementation("androidx.core:core-ktx:1.6.0")
 	implementation("androidx.appcompat:appcompat:1.3.0")
-	implementation("com.google.android.material:material:1.3.0")
+	implementation("com.google.android.material:material:1.4.0")
 
 	// Jetpack dependencies
 
 	// Test implementations
 	testImplementation("junit:junit:4.13.2")
-	androidTestImplementation("androidx.test.ext:junit:1.1.2")
-	androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+	androidTestImplementation("androidx.test.ext:junit:1.1.3")
+	androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
