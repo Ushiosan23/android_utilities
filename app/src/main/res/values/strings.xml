@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Android Utilities</string>
+	<!-- Others -->
+	<string name="btn_txt_example">Click Me</string>
+</resources>
