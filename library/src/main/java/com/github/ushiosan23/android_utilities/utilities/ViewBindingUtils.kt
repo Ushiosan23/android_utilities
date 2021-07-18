@@ -4,6 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 
+/**
+ * Inflate layout binding class. This method is used to inflate activities.
+ *
+ * @param clazz Target layout class to inflate
+ * @param inflater Activity or fragment inflater
+ * @return Returns an instance of target class binding
+ */
 @Suppress("UNCHECKED_CAST")
 fun <T : ViewBinding> inflateBinding(clazz: Class<T>, inflater: LayoutInflater): T? {
 	val method = try {
@@ -20,6 +27,15 @@ fun <T : ViewBinding> inflateBinding(clazz: Class<T>, inflater: LayoutInflater):
 	}
 }
 
+/**
+ * Inflate layout binding class. This method is used to inflate fragments.
+ *
+ * @param clazz Target layout class to inflate
+ * @param inflater Activity or fragment inflater
+ * @param parent Target parent
+ * @param attachToParent Property inflate fragment and attach to parent
+ * @return Returns an instance of target class binding
+ */
 @Suppress("UNCHECKED_CAST")
 fun <T : ViewBinding> inflateBinding(
 	clazz: Class<T>,
