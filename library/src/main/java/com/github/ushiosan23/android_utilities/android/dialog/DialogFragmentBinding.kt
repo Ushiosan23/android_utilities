@@ -118,6 +118,17 @@ abstract class DialogFragmentBinding<T : ViewBinding> : DialogFragment(), IDialo
 	}
 
 	/**
+	 * Called immediately after [onCreateView] method.
+	 *
+	 * @param view Fragment dialog view
+	 * @param savedInstanceState If non-null, this fragment is being re-constructed
+	 * from a previous saved state as given here.
+	 */
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		onFragmentLoaded(savedInstanceState)
+	}
+
+	/**
 	 * This method will be called after [onCreate] and immediately before [onCreateView].
 	 * The default implementation simply instantiates and returns a Dialog class.
 	 *
@@ -139,18 +150,6 @@ abstract class DialogFragmentBinding<T : ViewBinding> : DialogFragment(), IDialo
 		)
 		// Return configured dialog
 		return tmpDialog
-	}
-
-	/**
-	 * Initialize all fragments.
-	 * This method use reflexion to inflate view binding.
-	 * @param savedInstanceState If non-null, this fragment is being re-constructed
-	 * from a previous saved state as given here.
-	 */
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		// Called just after create view and dialog
-		onFragmentLoaded(savedInstanceState)
 	}
 
 	/**
