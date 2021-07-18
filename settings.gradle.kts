@@ -1,4 +1,4 @@
 rootProject.name = "androidUtilities"
 
 // Libraries
-include(":library")
+include(":library", ":app")
