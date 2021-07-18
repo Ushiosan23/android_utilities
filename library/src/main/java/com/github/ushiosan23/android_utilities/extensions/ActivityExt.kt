@@ -5,7 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 
 /* ---------------------------------------------------------
@@ -105,3 +111,35 @@ fun <T : Activity> T.makeSnack(text: CharSequence, duration: Int): Snackbar =
  */
 fun <T : Activity> T.getActivityViewRoot(): View =
 	findViewById(Window.ID_ANDROID_CONTENT)
+
+/* ---------------------------------------------------------
+ *
+ * Activity registration callbacks
+ *
+ * --------------------------------------------------------- */
+
+/**
+ * Register result activity.
+ * You can use that to manage any type of contracts.
+ *
+ * @param T Target activity type
+ * @param L Contract type
+ * @param Y Result type
+ * @param contract Contract instance
+ * @param callback Callback result instance
+ * @return Returns the activity result element to check
+ */
+fun <T : AppCompatActivity, L, Y> T.registerForResultEx(
+	contract: ActivityResultContract<L, Y>,
+	callback: ActivityResultCallback<Y>
+): ActivityResultLauncher<L> =
+	registerForActivityResult(contract, callback)
+
+/**
+ * Register activity to request result. This method is the new form to replace [Activity.startActivityForResult]
+ */
+fun <T : AppCompatActivity> T.registerActivityForResultEx(
+	callback: ActivityResultCallback<ActivityResult>
+): ActivityResultLauncher<Intent> =
+	registerForResultEx(ActivityResultContracts.StartActivityForResult(), callback)
+
