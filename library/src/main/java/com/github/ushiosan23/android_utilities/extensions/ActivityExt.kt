@@ -23,13 +23,12 @@ import com.google.android.material.snackbar.Snackbar
 /**
  * Change activity extension.
  *
- * @param T Current activity
- * @param L Target generic class
+ * @param T Target generic class
  * @param bundle Additional options for how the Activity should be started.
  * @param extra Extra intent arguments
  */
-inline fun <T : Activity, reified L> T.changeActivity(bundle: Bundle? = null, vararg extra: Pair<String, Any?>) =
-	with(Intent(this, L::class.java)) {
+inline fun <reified T> Activity.changeActivity(bundle: Bundle? = null, vararg extra: Pair<String, Any?>) =
+	with(Intent(this, T::class.java)) {
 		extra.forEach { putAnyExtra(it) }
 		startActivity(this, bundle)
 	}
@@ -37,18 +36,17 @@ inline fun <T : Activity, reified L> T.changeActivity(bundle: Bundle? = null, va
 /**
  * Change activity and wait for result.
  *
- * @param T Current activity
- * @param L Target generic class
+ * @param T Target generic class
  * @param requestCode Activity request code
  * @param bundle Additional options for how the Activity should be started.
  * @param extra Extra intent arguments
  */
-inline fun <T : Activity, reified L> T.changeActivityForResult(
+inline fun <reified T> Activity.changeActivityForResult(
 	requestCode: Int,
 	bundle: Bundle? = null,
 	vararg extra: Pair<String, Any?>
 ) =
-	with(Intent(this, L::class.java)) {
+	with(Intent(this, T::class.java)) {
 		extra.forEach { putAnyExtra(it) }
 		startActivityForResult(this, requestCode, bundle)
 	}
@@ -57,13 +55,12 @@ inline fun <T : Activity, reified L> T.changeActivityForResult(
  * Change activity extension.
  * Close current open activity after open the new activity.
  *
- * @param T Current activity
- * @param L Target generic class
+ * @param T Target generic class
  * @param bundle Additional options for how the Activity should be started.
  * @param extra Extra intent arguments
  */
-inline fun <T : Activity, reified L> T.changeActivityAndClose(bundle: Bundle? = null, vararg extra: Pair<String, Any?>) {
-	changeActivity<T, L>(bundle, *extra)
+inline fun <reified T> Activity.changeActivityAndClose(bundle: Bundle? = null, vararg extra: Pair<String, Any?>) {
+	changeActivity<T>(bundle, *extra)
 	finish()
 }
 
@@ -122,14 +119,13 @@ fun <T : Activity> T.getActivityViewRoot(): View =
  * Register result activity.
  * You can use that to manage any type of contracts.
  *
- * @param T Target activity type
  * @param L Contract type
  * @param Y Result type
  * @param contract Contract instance
  * @param callback Callback result instance
  * @return Returns the activity result element to check
  */
-fun <T : AppCompatActivity, L, Y> T.registerForResultEx(
+fun <L, Y> AppCompatActivity.registerForResultEx(
 	contract: ActivityResultContract<L, Y>,
 	callback: ActivityResultCallback<Y>
 ): ActivityResultLauncher<L> =
@@ -138,11 +134,10 @@ fun <T : AppCompatActivity, L, Y> T.registerForResultEx(
 /**
  * Register activity to request result. This method is the new form to replace [Activity.startActivityForResult]
  *
- * @param T Target activity
  * @param callback Result callback
  * @return Return the activity result launcher instance
  */
-fun <T : AppCompatActivity> T.registerActivityForResultEx(
+fun AppCompatActivity.registerActivityForResultEx(
 	callback: ActivityResultCallback<ActivityResult>
 ): ActivityResultLauncher<Intent> =
 	registerForResultEx(ActivityResultContracts.StartActivityForResult(), callback)
