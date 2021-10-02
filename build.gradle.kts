@@ -6,15 +6,15 @@ buildscript {
 	// Android properties
 	extra.set("sdkVersion", 30)
 	extra.set("sdkMinVersion", 23)
-	extra.set("buildToolsVersion", "30.0.3")
+	extra.set("buildToolsVersion", "31.0.0")
 
 	// Library properties
 	extra.set("versionCode", 1)
-	extra.set("versionName", "1.0.4.1")
+	extra.set("versionName", "1.0.4.3")
 
 	// JDK properties
-	extra.set("jvmTarget", "1.8")
-	extra.set("sourceCompatibility", JavaVersion.VERSION_1_8)
+	extra.set("jvmTarget", "11")
+	extra.set("sourceCompatibility", JavaVersion.VERSION_11)
 
 	// Maven configuration
 	extra.set("maven.groupId", "com.github.ushiosan23")
@@ -35,9 +35,9 @@ buildscript {
 
 	// Plugin dependencies
 	dependencies {
-		classpath("com.android.tools.build:gradle:4.2.2")
+		classpath("com.android.tools.build:gradle:7.0.2")
 		classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.5.0")
-		classpath(kotlin("gradle-plugin", "1.5.20"))
+		classpath(kotlin("gradle-plugin", "1.5.31"))
 	}
 }
 

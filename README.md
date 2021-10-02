@@ -2,7 +2,9 @@
 
 ## Versions
 
-- [1.0.4.1](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.0.4.1) (latest)
+- [1.0.4.3](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.0.4.3) (latest)
+- [1.0.4.2](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.0.4.2)
+- [1.0.4.1](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.0.4.1)
 - [1.0.4](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.0.4)
 - [1.0.3](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.0.3)
 - 1.0.2 (Another time, I accidentally forgot to publish this artifact :cry:)
