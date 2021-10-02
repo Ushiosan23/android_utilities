@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.content.res.AppCompatResources
 import com.github.ushiosan23.android_utilities.android.activity.ActivityCompatBinding
+import com.github.ushiosan23.android_utilities.android.time.TimeUnits
+import com.github.ushiosan23.android_utilities.android.time.TimerTask
 import com.github.ushiosan23.android_utilities.extensions.makeSnack
 import com.github.ushiosan23.android_utilities.extensions.makeToast
 import com.github.ushiosan23.android_utilities.extensions.resolveClass
@@ -25,7 +27,7 @@ class ActivityMain : ActivityCompatBinding<ActivityMainBinding>() {
 		binding.exampleThemeToggle.setOnClickListener(this::onToggleThemeClicked)
 		binding.exampleButtonDialog.setOnClickListener(this::onButtonDialogClicked)
 		binding.hardwareInformationButton.setOnClickListener(this::onButtonInfoDialogClicked)
-
+		binding.timerTaskButton.setOnClickListener(this::onButtonTimerTaskClicked)
 
 		// Change theme
 		val currentNightMode = resources
@@ -85,6 +87,24 @@ class ActivityMain : ActivityCompatBinding<ActivityMainBinding>() {
 	private fun onButtonInfoDialogClicked(v: View) {
 		val dialog = DeviceInfoDialog()
 		dialog.show(supportFragmentManager, "DeviceInfoDialog")
+	}
+
+	@Suppress("UNUSED_PARAMETER")
+	private fun onButtonTimerTaskClicked(v: View) {
+		var seconds = 1
+		var task: TimerTask? = null
+
+		task = TimerTask.generateTimerTask(TimeUnits.getSeconds(3)) {
+			if (seconds >= 3)
+				task!!.stop()
+
+			runOnUiThread {
+				makeToast("Timer Task", Toast.LENGTH_SHORT)
+					.show()
+			}
+			seconds++
+		}
+		task.start(false)
 	}
 
 }
