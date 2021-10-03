@@ -12,7 +12,9 @@
 		android:theme="@style/Theme.Experiments"
 		tools:ignore="AllowBackup">
 
-		<activity android:name=".activities.ActivityMain">
+		<activity
+			android:name=".activities.ActivityMain"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />

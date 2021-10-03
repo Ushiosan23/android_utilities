@@ -15,16 +15,13 @@ val extra = rootProject.extra
 /* Android configuration */
 android {
 	// Global configurations
-	compileSdkVersion(extra["sdkVersion"] as Int)
-	buildToolsVersion(extra["buildToolsVersion"] as String)
+	compileSdk = extra["sdkVersion"] as Int
+	buildToolsVersion = extra["buildToolsVersion"] as String
 
 	// Default configuration
 	defaultConfig {
-		targetSdkVersion(extra["sdkVersion"] as Int)
-		minSdkVersion(extra["sdkMinVersion"] as Int)
-
-		versionCode(extra["versionCode"] as Int)
-		versionName(extra["versionName"] as String)
+		minSdk = extra["sdkMinVersion"] as Int
+		targetSdk = extra["sdkVersion"] as Int
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
@@ -57,6 +54,7 @@ android {
 	}
 }
 
+@Suppress("DEPRECATION")
 tasks.create("androidSourceJar", Jar::class) {
 	archiveClassifier.set("sources")
 	if (project.plugins.hasPlugin("com.android.library")) {
@@ -134,11 +132,12 @@ dependencies {
 
 	// Android dependencies
 	implementation("androidx.core:core-ktx:1.6.0")
-	implementation("androidx.appcompat:appcompat:1.3.0")
+	implementation("androidx.appcompat:appcompat:1.3.1")
 	implementation("com.google.android.material:material:1.4.0")
 
 	// Jetpack dependencies
 	implementation("androidx.biometric:biometric:1.1.0")
+	implementation("androidx.preference:preference-ktx:1.1.1")
 
 	// Test implementations
 	testImplementation("junit:junit:4.13.2")

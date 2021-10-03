@@ -2,6 +2,7 @@ package com.github.ushiosan23.android_utilities.extensions
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -12,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
 
 /* ---------------------------------------------------------
@@ -142,3 +144,30 @@ fun AppCompatActivity.registerActivityForResultEx(
 ): ActivityResultLauncher<Intent> =
 	registerForResultEx(ActivityResultContracts.StartActivityForResult(), callback)
 
+/* ---------------------------------------------------------
+ *
+ * Settings properties
+ *
+ * --------------------------------------------------------- */
+
+/**
+ * Current shared preferences
+ */
+private lateinit var currentSharedPreferences: SharedPreferences
+
+/**
+ * Current shared context
+ */
+private var currentSharedContextHash: Int = 0
+
+/**
+ * Get current shared preferences
+ */
+val Activity.sharedPreferences: SharedPreferences
+	get() {
+		if (!::currentSharedPreferences.isInitialized || currentSharedContextHash != hashCode()) {
+			currentSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+			currentSharedContextHash = hashCode()
+		}
+		return currentSharedPreferences
+	}
