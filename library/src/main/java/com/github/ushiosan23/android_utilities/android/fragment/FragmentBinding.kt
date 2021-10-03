@@ -88,14 +88,18 @@ abstract class FragmentBinding<T : ViewBinding> : Fragment(), IFragmentBinding<T
 	}
 
 	/**
-	 * Initialize all fragments.
-	 * This method use reflexion to inflate view binding.
+	 * Called immediately after [.onCreateView]
+	 * has returned, but before any saved state has been restored in to the view.
+	 * This gives subclasses a chance to initialize themselves once
+	 * they know their view hierarchy has been completely created.  The fragment's
+	 * view hierarchy is not however attached to its parent at this point.
 	 *
+	 * @param view The View returned by [.onCreateView].
 	 * @param savedInstanceState If non-null, this fragment is being re-constructed
 	 * from a previous saved state as given here.
 	 */
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
 		onFragmentLoaded(savedInstanceState)
 	}
 
