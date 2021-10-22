@@ -1,11 +1,37 @@
 package com.github.ushiosan23.android_utilities.extensions
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.net.ConnectivityManager
 import android.os.Build
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.preference.PreferenceManager
+
+/* ---------------------------------------------------------
+ *
+ * Shared preferences
+ *
+ * --------------------------------------------------------- */
+
+/**
+ * Global app shared preferences
+ */
+private lateinit var appSharedPreferences: SharedPreferences
+
+/**
+ * Get application shared preferences
+ */
+val Context.sharedPreferences: SharedPreferences
+	get() = if (!::appSharedPreferences.isInitialized) {
+		appSharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+		appSharedPreferences
+	} else {
+		appSharedPreferences
+	}
+
 
 /* ---------------------------------------------------------
  *
@@ -56,3 +82,15 @@ fun <T : Context> T.getDisplayMetrics(): DisplayMetrics {
 	// Get metrics
 	return metrics
 }
+
+/* ---------------------------------------------------------
+ *
+ * Network
+ *
+ * --------------------------------------------------------- */
+
+/**
+ * Get connectivity manager
+ */
+val Context.connectivityManager: ConnectivityManager
+	get() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
