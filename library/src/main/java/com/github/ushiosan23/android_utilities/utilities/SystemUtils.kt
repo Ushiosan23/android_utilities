@@ -6,7 +6,7 @@ import android.os.Looper
 /**
  * Storage
  */
-private lateinit var systemHandler: Handler
+private lateinit var localSystemHandler: Handler
 
 /**
  * Get valid system handler.
@@ -14,11 +14,11 @@ private lateinit var systemHandler: Handler
  *
  * @return Returns a system handler instance
  */
-fun getSystemHandler(): Handler = if (!::systemHandler.isInitialized) {
-	systemHandler = Handler(Looper.getMainLooper())
-	systemHandler
+fun getSystemHandler(): Handler = if (!::localSystemHandler.isInitialized) {
+	localSystemHandler = Handler(Looper.getMainLooper())
+	localSystemHandler
 } else {
-	systemHandler
+	localSystemHandler
 }
 
 /**
@@ -27,7 +27,7 @@ fun getSystemHandler(): Handler = if (!::systemHandler.isInitialized) {
  *
  * @param action Target action to execute
  */
-fun runOnUiThreadEx(action: Runnable) = systemHandler.post(action)
+fun runOnUiThreadEx(action: Runnable) = getSystemHandler().post(action)
 
 /**
  * Run action in android UI Thread with delay.
@@ -36,4 +36,4 @@ fun runOnUiThreadEx(action: Runnable) = systemHandler.post(action)
  * @param action Target action to execute
  * @param delay Delay time in milliseconds
  */
-fun runOnUiThreadEx(action: Runnable, delay: Long = 0L) = systemHandler.postDelayed(action, delay)
+fun runOnUiThreadEx(action: Runnable, delay: Long = 0L) = getSystemHandler().postDelayed(action, delay)
