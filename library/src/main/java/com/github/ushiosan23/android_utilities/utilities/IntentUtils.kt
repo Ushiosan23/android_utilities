@@ -12,6 +12,7 @@ import android.provider.DocumentsContract
  * @param uri Default open location. This argument is valid only in [Build.VERSION_CODES.O] or above
  * @return Return an intent configured to launch
  */
+@Deprecated("Use Activity contracts instead", ReplaceWith(""))
 fun fileChooserIntent(typeEl: String = "*/*", uri: Uri? = null) =
 	Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
 		addCategory(Intent.CATEGORY_OPENABLE)
@@ -28,6 +29,7 @@ fun fileChooserIntent(typeEl: String = "*/*", uri: Uri? = null) =
  * @param uri Default open location. This argument is valid only in [Build.VERSION_CODES.O] or above
  * @return Return an intent configured to launch
  */
+@Deprecated("Use Activity contracts instead", ReplaceWith(""))
 fun directoryChooserIntent(uri: Uri? = null) =
 	Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
