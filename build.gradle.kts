@@ -10,7 +10,7 @@ buildscript {
 
 	// Library properties
 	extra.set("versionCode", 1)
-	extra.set("versionName", "1.0.4.4")
+	extra.set("versionName", "1.0.5")
 
 	// JDK properties
 	extra.set("jvmTarget", "11")
@@ -35,7 +35,7 @@ buildscript {
 
 	// Plugin dependencies
 	dependencies {
-		classpath("com.android.tools.build:gradle:7.0.2")
+		classpath("com.android.tools.build:gradle:7.0.3")
 		classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.5.0")
 		classpath(kotlin("gradle-plugin", "1.5.31"))
 	}
