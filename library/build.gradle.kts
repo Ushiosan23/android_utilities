@@ -10,18 +10,18 @@ plugins {
 apply("../local.gradle.kts")
 
 // Extra properties
-val extra = rootProject.extra
+val rpExtra get() = rootProject.extra
 
 /* Android configuration */
 android {
 	// Global configurations
-	compileSdk = extra["sdkVersion"] as Int
-	buildToolsVersion = extra["buildToolsVersion"] as String
+	compileSdk = rpExtra["sdkVersion"] as Int
+	buildToolsVersion = rpExtra["buildToolsVersion"] as String
 
 	// Default configuration
 	defaultConfig {
-		minSdk = extra["sdkMinVersion"] as Int
-		targetSdk = extra["sdkVersion"] as Int
+		minSdk = rpExtra["sdkMinVersion"] as Int
+		targetSdk = rpExtra["sdkVersion"] as Int
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}
@@ -44,13 +44,22 @@ android {
 
 	// Jdk configuration
 	compileOptions {
-		sourceCompatibility = extra["sourceCompatibility"] as JavaVersion
-		targetCompatibility = extra["sourceCompatibility"] as JavaVersion
+		sourceCompatibility = rpExtra["sourceCompatibility"] as JavaVersion
+		targetCompatibility = rpExtra["sourceCompatibility"] as JavaVersion
 	}
 
 	// Kotlin configuration
 	kotlinOptions {
-		jvmTarget = extra["jvmTarget"] as String
+		jvmTarget = rpExtra["jvmTarget"] as String
+	}
+}
+
+tasks.dokkaHtml.configure {
+	suppressObviousFunctions.set(true)
+	dokkaSourceSets {
+		configureEach {
+			jdkVersion.set((rpExtra["jvmTarget"] as String).toInt())
+		}
 	}
 }
 
@@ -131,8 +140,8 @@ dependencies {
 	implementation(kotlin("stdlib"))
 
 	// Android dependencies
-	implementation("androidx.core:core-ktx:1.6.0")
-	implementation("androidx.appcompat:appcompat:1.3.1")
+	implementation("androidx.core:core-ktx:1.7.0")
+	implementation("androidx.appcompat:appcompat:1.4.0")
 	implementation("com.google.android.material:material:1.4.0")
 
 	// Jetpack dependencies
