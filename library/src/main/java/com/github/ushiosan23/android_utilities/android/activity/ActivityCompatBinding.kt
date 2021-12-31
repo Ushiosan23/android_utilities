@@ -1,7 +1,9 @@
 package com.github.ushiosan23.android_utilities.android.activity
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import androidx.viewbinding.ViewBinding
 import com.github.ushiosan23.android_utilities.utilities.inflateBinding
 
@@ -31,8 +33,14 @@ abstract class ActivityCompatBinding<T : ViewBinding> : AppCompatActivity(), IAc
 	 * Target layout binding instance.
 	 */
 	@Suppress("MemberVisibilityCanBePrivate")
-	protected val binding: T
+	override val binding: T
 		get() = internalBinding!!
+
+	/**
+	 * Application preferences
+	 */
+	lateinit var sharedPreferences: SharedPreferences
+		private set
 
 	/* ---------------------------------------------------------
 	 *
@@ -63,6 +71,8 @@ abstract class ActivityCompatBinding<T : ViewBinding> : AppCompatActivity(), IAc
 	 */
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		// Initialize shared preferences
+		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 		// Initialize binding
 		internalBinding = inflateBinding(
 			bindingClass,

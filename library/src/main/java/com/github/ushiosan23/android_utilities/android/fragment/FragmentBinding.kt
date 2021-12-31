@@ -22,7 +22,7 @@ import com.github.ushiosan23.android_utilities.utilities.inflateBinding
  * @see Fragment
  * @see IFragmentBinding
  */
-abstract class FragmentBinding<T : ViewBinding> : Fragment(), IFragmentBinding<T> {
+abstract class FragmentBinding<T : ViewBinding> : XFragment(), IFragmentBinding<T> {
 
 	/* ---------------------------------------------------------
 	 *
@@ -34,7 +34,7 @@ abstract class FragmentBinding<T : ViewBinding> : Fragment(), IFragmentBinding<T
 	 * Target layout binding instance.
 	 */
 	@Suppress("MemberVisibilityCanBePrivate")
-	protected val binding: T
+	override val binding: T
 		get() = internalBinding!!
 
 	/**

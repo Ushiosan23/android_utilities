@@ -1,7 +1,9 @@
 package com.github.ushiosan23.android_utilities.android.activity
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 
 /**
  * Custom activity.
@@ -17,6 +19,12 @@ abstract class ActivityCompat : AppCompatActivity(), IActivityCompat {
 	 * Properties
 	 *
 	 * --------------------------------------------------------- */
+
+	/**
+	 * Application preferences
+	 */
+	lateinit var sharedPreferences: SharedPreferences
+		private set
 
 	/**
 	 * Target layout id.
@@ -39,6 +47,8 @@ abstract class ActivityCompat : AppCompatActivity(), IActivityCompat {
 	 */
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		// Initialize shared preferences
+		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 		// Set defined content view resource id
 		setContentView(contentView)
 		// Called only if activity is loaded

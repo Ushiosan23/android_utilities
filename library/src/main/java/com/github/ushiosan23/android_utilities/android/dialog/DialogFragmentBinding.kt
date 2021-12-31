@@ -35,7 +35,7 @@ abstract class DialogFragmentBinding<T : ViewBinding> : DialogFragment(), IDialo
 	 * Target layout binding instance.
 	 */
 	@Suppress("MemberVisibilityCanBePrivate")
-	protected val binding: T
+	override val binding: T
 		get() = internalBinding!!
 
 	/**
