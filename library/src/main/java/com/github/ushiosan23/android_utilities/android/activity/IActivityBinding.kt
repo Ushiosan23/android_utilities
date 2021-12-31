@@ -11,6 +11,11 @@ import androidx.viewbinding.ViewBinding
 interface IActivityBinding<T : ViewBinding> : IActivityCompat {
 
 	/**
+	 * Binding element instance
+	 */
+	val binding: T
+
+	/**
 	 * Binding class.
 	 * This class is used to call `inflate` method via reflexion.
 	 * @see com.github.ushiosan23.android_utilities.extensions.resolveClass
