@@ -4,7 +4,7 @@ plugins {
 
 buildscript {
 	// Android properties
-	extra.set("sdkVersion", 30)
+	extra.set("sdkVersion", 31)
 	extra.set("sdkMinVersion", 23)
 	extra.set("buildToolsVersion", "31.0.0")
 
