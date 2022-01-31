@@ -10,7 +10,7 @@ buildscript {
 
 	// Library properties
 	extra.set("versionCode", 1)
-	extra.set("versionName", "1.2.0")
+	extra.set("versionName", "1.2.1")
 
 	// JDK properties
 	extra.set("jvmTarget", "11")

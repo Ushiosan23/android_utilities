@@ -2,7 +2,8 @@
 
 ## Versions
 
-- [1.2.0](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.2.0) (latest)
+- [1.2.1](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.2.1) (latest)
+- [1.2.0](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.2.0)
 - [1.1.0](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.1.0)
 - [1.0.5](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.0.5)
 - [1.0.4.4](https://github.com/Ushiosan23/android_utilities/releases/tag/V1.0.4.4)
