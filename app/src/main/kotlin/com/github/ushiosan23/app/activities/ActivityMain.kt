@@ -7,8 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.content.res.AppCompatResources
 import com.github.ushiosan23.android_utilities.android.activity.ActivityCompatBinding
+import com.github.ushiosan23.android_utilities.android.time.TaskJob
 import com.github.ushiosan23.android_utilities.android.time.TimeUnits
-import com.github.ushiosan23.android_utilities.android.time.TimerTask
 import com.github.ushiosan23.android_utilities.extensions.makeSnack
 import com.github.ushiosan23.android_utilities.extensions.makeToast
 import com.github.ushiosan23.android_utilities.extensions.resolveClass
@@ -21,6 +21,8 @@ import com.google.android.material.snackbar.Snackbar
 class ActivityMain : ActivityCompatBinding<ActivityMainBinding>() {
 
 	override val bindingClass: Class<ActivityMainBinding> = resolveClass()
+
+	private lateinit var taskJob: TaskJob
 
 	override fun onActivityLoaded(savedInstanceState: Bundle?) {
 		binding.exampleButton.setOnClickListener(this::onButtonClicked)
@@ -91,20 +93,18 @@ class ActivityMain : ActivityCompatBinding<ActivityMainBinding>() {
 
 	@Suppress("UNUSED_PARAMETER")
 	private fun onButtonTimerTaskClicked(v: View) {
-		var seconds = 1
-		var task: TimerTask? = null
-
-		task = TimerTask.generateTimerTask(TimeUnits.getSeconds(3)) {
-			if (seconds >= 3)
-				task!!.stop()
-
-			runOnUiThread {
-				makeToast("Timer Task", Toast.LENGTH_SHORT)
+		val timeInterval = TimeUnits.getSeconds(3)
+		// Check if task job is initialized
+		if (!this::taskJob.isInitialized) {
+			taskJob = TaskJob.Companion.oneShotOf(timeInterval) {
+				makeToast("Timer task", Toast.LENGTH_SHORT)
 					.show()
+			}.also {
+				it.runOnUIContext = true
 			}
-			seconds++
 		}
-		task.start(false)
+		// Run only if timer is available
+		if (!taskJob.active) taskJob.start()
 	}
 
 }

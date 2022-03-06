@@ -3,6 +3,13 @@ package com.github.ushiosan23.android_utilities.android.time
 import java.util.*
 
 
+@Deprecated(
+	message = "This class is ambiguous and you cannot get current timer information",
+	replaceWith = ReplaceWith(
+		"TaskJob"
+	),
+	level = DeprecationLevel.WARNING
+)
 class TimerTask private constructor(t: Long, tt: () -> Unit) {
 
 	/**
@@ -60,7 +67,15 @@ class TimerTask private constructor(t: Long, tt: () -> Unit) {
 		 * @param time Wait time
 		 * @param action Action to invoke
 		 */
+		@Suppress("DEPRECATION")
 		@JvmStatic
+		@Deprecated(
+			message = "This class is ambiguous and you cannot get current timer information",
+			replaceWith = ReplaceWith(
+				"TaskJob.generateOf(...)"
+			),
+			level = DeprecationLevel.WARNING
+		)
 		fun generateTimerTask(time: Long, action: () -> Unit): TimerTask =
 			TimerTask(time, action)
 
