@@ -47,11 +47,6 @@ android {
 		sourceCompatibility = rpExtra["sourceCompatibility"] as JavaVersion
 		targetCompatibility = rpExtra["sourceCompatibility"] as JavaVersion
 	}
-
-	// Kotlin configuration
-	kotlinOptions {
-		jvmTarget = rpExtra["jvmTarget"] as String
-	}
 }
 
 tasks.dokkaHtml.configure {
@@ -74,7 +69,7 @@ tasks.create("androidSourceJar", Jar::class) {
 	}
 }
 
-tasks.create("dokkaPackageJar", Jar::class) {
+tasks.create("documentationPackageJar", Jar::class) {
 	archiveClassifier.set("javadoc")
 	if (project.plugins.hasPlugin("org.jetbrains.dokka")) {
 		from(project.tasks["dokkaHtml"])
@@ -93,7 +88,7 @@ afterEvaluate {
 
 				from(components["release"])
 				artifact(project.tasks["androidSourceJar"])
-				artifact(project.tasks["dokkaPackageJar"])
+				artifact(project.tasks["documentationPackageJar"])
 
 				// Pom file
 				pom {
@@ -136,13 +131,12 @@ afterEvaluate {
 
 /* library dependencies */
 dependencies {
-	// Custom dependencies
-	implementation(kotlin("stdlib"))
-
 	// Android dependencies
 	implementation("androidx.core:core-ktx:1.7.0")
 	implementation("androidx.appcompat:appcompat:1.4.1")
+	implementation("androidx.activity:activity-ktx:1.4.0")
 	implementation("com.google.android.material:material:1.5.0")
+	implementation("androidx.appcompat:appcompat-resources:1.4.1")
 
 	// Jetpack dependencies
 	implementation("androidx.biometric:biometric:1.1.0")
